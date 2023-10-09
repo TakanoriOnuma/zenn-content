@@ -1,0 +1,22 @@
+{
+  "name": "zenn-content",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "new:article": "zenn new:article",
+    "preview": "zenn preview --port 8888"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "18.14.1"
+  },
+  "volta": {
+    "node": "18.14.1",
+    "npm": "9.3.1"
+  },
+  "dependencies": {
+    "zenn-cli": "^0.1.147"
+  }
+}
