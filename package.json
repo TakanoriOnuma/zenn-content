@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow npm",
     "new:article": "zenn new:article",
     "preview": "zenn preview --port 8888"
   },
