@@ -4,6 +4,7 @@ emoji: "😽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["promise", "api"]
 published: true
+published_at: 2019-01-07
 ---
 
 :::message
