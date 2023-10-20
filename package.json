@@ -6,7 +6,10 @@
   "scripts": {
     "preinstall": "npx only-allow npm",
     "new:article": "zenn new:article",
-    "preview": "zenn preview --port 8888"
+    "preview": "zenn preview --port 8888",
+    "fmtprettier": "yarn fmtprettierbase --write",
+    "fmtprettierbase": "prettier '**/*.{js,ts,tsx,json,md,html,yml}' --cache --cache-strategy content --ignore-path .prettierignore",
+    "fmtprettiercheck": "yarn fmtprettierbase --check"
   },
   "author": "",
   "license": "UNLICENSED",
@@ -19,5 +22,8 @@
   },
   "dependencies": {
     "zenn-cli": "^0.1.147"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }
