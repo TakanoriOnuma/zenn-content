@@ -2,7 +2,7 @@
 title: "Shapefile形式をGeoJSON形式に変換してマップに表示する"
 emoji: "🌏"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["GIS", "shapefile", "leaflet"]
+topics: ["GIS", "shapefile", "geojson", "leaflet"]
 published: true
 ---
 
