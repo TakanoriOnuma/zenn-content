@@ -1,5 +1,5 @@
 ---
-title: "Shapefile形式をGeoJSON形式に変換してマップに表示する"
+title: "Shapefile形式をGeoJSON形式に変換してマップに表示するWebアプリを作った"
 emoji: "🌏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GIS", "shapefile", "geojson", "leaflet"]
@@ -468,4 +468,4 @@ https://qiita.com/mitch0807/items/52698a561d4255578657
 
 ## 終わりに
 
-以上がShapefile形式をGeoJSON形式に変換してマップにプレビュー表示し、変換データを保存する方法でした。Shapefileはバイナリであるためシュッと中身を見るのが難しいものですが`shapefile`と`leaflet`を使うことで簡単にプレビューできて、かつダウンロードもできるというかなり良さげなWebアプリができたんじゃないかなと思います。shapefileのデータを扱う際の参考になったり、単純に閲覧したい方の助けになれば幸いです。
+以上がShapefile形式をGeoJSON形式に変換してマップにプレビュー表示し、変換データを保存するWebアプリの実装内容でした。Shapefileはバイナリであるためシュッと中身を見るのが難しいものですが`shapefile`と`leaflet`を使うことで簡単にプレビューできて、かつダウンロードもできるというかなり良さげなWebアプリができたんじゃないかなと思います。shapefileのデータを扱う際の参考になったり、単純に閲覧したい方の助けになれば幸いです。
