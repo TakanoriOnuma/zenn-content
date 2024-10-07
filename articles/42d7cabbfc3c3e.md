@@ -17,9 +17,29 @@ https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P17.html
 
 https://loris.co.jp/column/gis-data-formats.html
 
-GISデータでもGeoJSONだとWebでも扱いやすいため、ShapefileからGeoJSONに変換するnpmパッケージがあるか調べたところ [shapefile](https://www.npmjs.com/package/shapefile) が使えそうだったのでそれを試してみました。またその結果をマップ上で確認できると嬉しいため、それも合わせて行ったのでそれらについて記事まとめました。
+GISデータでもGeoJSONだとWebでも扱いやすいため、ShapefileからGeoJSONに変換するnpmパッケージがあるか調べたところ [shapefile](https://www.npmjs.com/package/shapefile) が使えそうだったのでそれを試してみました。またその結果をマップ上で確認できると嬉しいため、最終的にはWebアプリとして実装しましたのでその実装方法についても記事にまとめました。
+
+### 作ったWebアプリ
+
+先に作ったWebアプリを紹介しますと、まず画面としては以下のようなものになります。
+
+![](/images/shapefile-parser/shapefile-previewer.png)
+
+機能としてはざっくり以下の通りです。
+
+- input file要素でshapefileまたはGeoJSONのファイルを複数アップロードし、それをgeojsonに変換してマップ上に表示
+- マップ上に表示するデータはチェックボックスで切り替えることが可能
+- shapefileの場合はそれぞれGeoJSONとしてダウンロードが可能で、かつマップ上に表示しているデータを一つのGeoJSONデータとしてダウンロードすることも可能
+
+アプリとリポジトリのURLをそれぞれ以下に貼りますので興味がある方は是非見てください。
+
+https://takanorionuma.github.io/shapefile-parser/
+
+https://github.com/TakanoriOnuma/shapefile-parser
 
 ## ローカルでGeoJSON形式に変換する
+
+まずはNode.jsで試す場合について説明します。
 
 ### Node.jsでshapefileをGeoJSON形式に変換
 
@@ -111,24 +131,11 @@ https://zenn.dev/yuichiyazaki/articles/b70da4bb63ea02
 ## WebでGeoJSON形式に変換し、マップに表示する
 
 GitHub上でGeoJSONファイルをプレビューできるのは素晴らしいなと思いつつ、これができるのであれば自分でも表示できるのでは？と思い調べたところ、[leaflet](https://leafletjs.com/) が使えそうでした。前セクションで使用した`shapefile`はWebでも使えるようなので、これらを組み合わせてshapefileをGeoJSONに変換してプレビュー表示し、それを見てGeoJSONデータをダウンロードするWebアプリを作りました。
-
-### 作ったWebアプリ
-
-先に作ったWebアプリを紹介しますと以下のような機能を持つものを作りました。
+Webアプリの実装全てを説明するのは長くなりすぎるため、以下の機能に関連した実装について説明したいと思います。
 
 - input file要素でshapefileまたはGeoJSONのファイルを複数アップロードし、それをgeojsonに変換してマップ上に表示
 - マップ上に表示するデータはチェックボックスで切り替えることが可能
 - shapefileの場合はそれぞれGeoJSONとしてダウンロードが可能で、かつマップ上に表示しているデータを一つのGeoJSONデータとしてダウンロードすることも可能
-
-スクショを貼ると以下のようなもので、アプリとリポジトリのURLもそれぞれ貼りますので興味がある方は是非見てください。
-
-![](/images/shapefile-parser/shapefile-previewer.png)
-
-https://takanorionuma.github.io/shapefile-parser/
-
-https://github.com/TakanoriOnuma/shapefile-parser
-
-次から各機能の実装について説明します。
 
 ### アップロードされたshapefileをGeoJSONに変換
 
@@ -185,6 +192,8 @@ export const GeoFileLoader = () => {
 https://github.com/TakanoriOnuma/shapefile-parser/blob/main/src/components/GeoFileLoader.tsx
 
 ### GeoJSONデータをマップに表示
+
+#### `leaflet`を使ってマップを表示
 
 まずはマップを表示する必要がありますが、`leaflet`を使うと以下のように書くと表示できます。GoogleMapのようにCtrlまたはCommandキーが入力中の時のみスクロールズームを有効にしたかったのですが、オプションがなかったので自前で設定しています。
 ちなみにReact版の[react-leaflet](https://react-leaflet.js.org/)というライブラリもありましたが、細かいハンドリングをする場合にやりづらくなりそうな気がしたのでpureなものを使っております。
@@ -251,6 +260,8 @@ export const Map: FC<MapProps> = () => {
   );
 };
 ```
+
+#### `leaflet`にGeoJSONデータを読み込んで表示
 
 ここからGeoJSONデータを読み込んで表示する場合は以下のようになります。`L.geoJSON`でGeoJSONデータを読み込んだレイヤーが出来上がるので非常に実装が楽でした。`L.geoJSON`にあるオプションはそれぞれ以下の設定を入れています。
 
@@ -327,6 +338,8 @@ export const Map: FC<MapProps> = () => {
    );
  };
 ```
+
+#### `leaflet`でマーカーをクラスタリングする
 
 これで最低限の機能はできましたが、GitHubのプレビューのようにクラスタリングもされていると良いなと思ったため、その設定も入れます。クラスタリングはパッケージが別で[`leaflet.markercluster`](https://github.com/Leaflet/Leaflet.markercluster)をimportすると`L.markerClusterGroup`が使用できるようになります。これはLayerでmapと同じようにaddLayerが使えるのでmapの代わりにこっちにaddLayerすることで自動でクラスタリングされます。
 
