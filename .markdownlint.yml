@@ -1,0 +1,14 @@
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+default: true
+
+# 行の長さ指定は無視
+# @see https://github.com/DavidAnson/markdownlint/blob/main/doc/md013.md
+MD013: false
+
+# URLは直接記述したい時があるので無視
+# @see https://github.com/DavidAnson/markdownlint/blob/main/doc/md034.md
+MD034: false
+
+# 画像のalt属性の指定は無視
+# @see https://github.com/DavidAnson/markdownlint/blob/main/doc/md045.md
+MD045: false
