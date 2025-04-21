@@ -155,7 +155,7 @@ renderDataFields(symObj, RENDER_SYMBOL_OBJ_ITEMS);
 ```
 
 ```tsx
-const RENDER_ITEMS: RenderItem<Person> = [
+const RENDER_ITEMS: RenderItem<Person>[] = [
   {
     // シンボルのパターンは取り除かれたのでエラー
     fieldKey: sym,
