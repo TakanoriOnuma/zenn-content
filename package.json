@@ -21,7 +21,7 @@
     "npm": "9.3.1"
   },
   "dependencies": {
-    "zenn-cli": "^0.1.158"
+    "zenn-cli": "^0.1.159"
   },
   "devDependencies": {
     "prettier": "^3.0.3"
