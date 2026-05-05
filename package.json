@@ -14,7 +14,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "zenn-cli": "^0.2.11"
+    "zenn-cli": "^0.4.7"
   },
   "devDependencies": {
     "prettier": "^3.0.3"
